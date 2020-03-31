@@ -99,7 +99,7 @@ end
 -- }}}
 
 -- {{{ Menu
--- Create a launcher widget and a main menu
+-- Create a launcher widget and a main menu главное меню
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
@@ -123,7 +123,10 @@ else
                   { "Debian", debian.menu.Debian_menu.Debian },
                   menu_terminal,
                   {"file man", fileman },
-
+                  {"gocamlfuse", "google-drive-ocamlfuse gdrive" },
+                  {"keepass", "keepassxc gdrive/aronsx.kdbx" },
+                  {"calculator", "gnome-calculator" },
+                  {"keep", "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki" },
                   {"surf", "surf google.com" },
                   {"browser", browser}
                 }
@@ -232,7 +235,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "top", height = 20, screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -311,11 +314,15 @@ globalkeys = gears.table.join(
         end,
         {description = "go back", group = "client"}),
 
-    -- Standard program
+    -- Standard program привязка клавиш
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(fileman) end,
               {description = "open a file manager", group = "launcher"}),
+    awful.key({ modkey,           }, "b", function () awful.spawn("surf duckduckgo.com") end,
+              {description = "open a surf browser", group = "launcher"}),
+    awful.key({ modkey,           }, "c", function () awful.spawn(browser) end,
+              {description = "open a surf browser", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
