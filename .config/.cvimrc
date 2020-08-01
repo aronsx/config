@@ -2,3 +2,4 @@ unmap f
 let blacklists = ["https://lingualeo.com/*"]
 let blacklists = ["https://stepik.org/*"]
 let langmap="ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
+map Ж :
