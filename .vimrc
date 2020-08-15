@@ -77,7 +77,7 @@ else
 endif
 else
 " терминал?
-  colorscheme elflord
+  colorscheme desert
 endif
 
 tab sball
@@ -142,10 +142,14 @@ map <F2> :TaskList<CR> 	   " отобразить список тасков на
 " Работа буфферами
 map <C-q> :bd<CR> 	   " CTRL+Q - закрыть текущий буффер
 
+" Копирование выделения в буфер обмена
+map <F9> :'<,'>w !xclip -selection clipboard<CR>
+
 "=====================================================
 " Python-mode settings
 "=====================================================
 " отключаем автокомплит по коду (у нас вместо него используется jedi-vim)
+" прогон открытого файла через autopep8 и запись
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
@@ -191,7 +195,10 @@ let g:jedi#popup_select_first = 0
 nnoremap <F5> :ConqueTermSplit ipython<CR>
 " а debug-mode на <F6>
 nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
+" передача текущего файла в пайтон
 nnoremap <F7> :!python3 %<CR>
+" прогон открытого файла через autopep8 и запись
+nnoremap <F8> :!autopep8 -i %<CR>
 let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 " проверка кода в соответствии с PEP8 через <leader>8
@@ -245,4 +252,9 @@ autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " размер цветного ограничителя 
 set colorcolumn=120
-set mouse=a
+
+" убрать цифры в vim
+set nonumber
+
+" открытие командной строки : на русской раскладке
+map Ж :
