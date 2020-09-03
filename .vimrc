@@ -4,6 +4,9 @@ filetype off                  " required
 "=====================================================
 " Vundle settings
 "=====================================================
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" для установки Vundle.vim
+" 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
