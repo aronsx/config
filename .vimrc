@@ -34,6 +34,12 @@ Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 
+"---------------=== Emmet ===-------------
+Plugin 'mattn/emmet-vim'		" Emmet for html
+
+"---------------=== for html ===-------------
+ Plugin 'vim-scripts/closetag.vim'	" closetag
+
 call vundle#end()            		" required
 filetype on
 filetype plugin on
@@ -196,6 +202,9 @@ nnoremap <F5> :ConqueTermSplit ipython<CR>
 " а debug-mode на <F6>
 nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
 " передача текущего файла в пайтон
+nnoremap <F7> :!clear && python3 %<CR>
+" компиляция и запуск файла С
+nnoremap <S-F7> :!clear && gcc -Wall %&& ./a.out<CR>
 nnoremap <F7> :!python3 %<CR>
 " прогон открытого файла через autopep8 и запись
 nnoremap <F8> :!autopep8 -i %<CR>
@@ -242,7 +251,8 @@ let html_no_rendering=1
 let g:closetag_default_xml=1
 let g:sparkupNextMapping='<c-l>'
 autocmd FileType html,htmldjango,htmljinja,eruby,mako let b:closetag_html_style=1
-autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/scripts/closetag.vim
+" autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/scripts/closetag.vim
+autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
 
 " --- CSS ---
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
