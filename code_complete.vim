@@ -278,7 +278,7 @@ let g:template['c']['ff'] = "#ifndef  \<c-r>=GetFileName()\<cr>\<CR>#define  \<c
 let g:template['c']['for'] = "for(".g:rs."...".g:re." ; ".g:rs."...".g:re." ; ".g:rs."...".g:re.")\<cr>{\<cr>".
             \g:rs."...".g:re."\<cr>}\<cr>"
 " let g:template['c']['main'] = "int main(int argc, char \*argv\[\])\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
-let g:template['c']['main'] = "int main(void)\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
+let g:template['c']['main'] = "int\tmain(void)\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
 let g:template['c']['switch'] = "switch (".g:rs."...".g:re.")\<cr>{\<cr>case ".g:rs."...".g:re." :\<cr>break;\<cr>case ".
             \g:rs."...".g:re." :\<cr>break;\<cr>default :\<cr>break;\<cr>}"
 let g:template['c']['if'] = "if(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
@@ -292,6 +292,7 @@ let g:template['c']['printf3'] = "printf(\"\%".g:rs."...".g:re."%".g:rs."...".g:
 let g:template['c']['uni'] = "#include <unistd.h>"
 let g:template['c']['stdi'] = "#include <stdio.h>"
 let g:template['c']['return'] = "return (".g:rs."...".g:re.");"
+let g:template['c']['fu'] = "".g:rs."...".g:re."\t".g:rs."...".g:re."(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
 
 " ---------------------------------------------
 " C++ templates
