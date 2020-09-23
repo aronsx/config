@@ -104,4 +104,3 @@ Plugin 'davidhalter/jedi-vim' " плагин автодополнения
 Plugin 'tpope/vim-surround' " плагин добавления скобок
 Plugin 'honza/vim-snippets' " плагин с автокомплитом
 Plugin 'mbbill/code_complete' " автокомплит с
-Plugin 'ervandew/supertab'  " автокомплит по табу для джедай вим
