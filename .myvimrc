@@ -101,7 +101,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this linek
 Plugin 'davidhalter/jedi-vim' " плагин автодополнения
-Plugin 'tpope/vim-surround'
-Plugin 'honza/vim-snippets'
-Plugin 'mbbill/code_complete'
-Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-surround' " плагин добавления скобок
+Plugin 'honza/vim-snippets' " плагин с автокомплитом
+Plugin 'mbbill/code_complete' " автокомплит с
+Plugin 'ervandew/supertab'  " автокомплит по табу для джедай вим
