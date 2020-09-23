@@ -1,5 +1,2 @@
-1. делаем git clone репозитория
-2. копируем в корень файл .myvimrc
-3. делаем git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-4. запускаем vim командой vim +PluginInstall +qall
-5. копируем файл code_complete.vim в папку .vim/bundle/code_complete/plugin/
+установка в одну команду
+git clone https://github.com/aronsx/config.git ~/aronsx && cp ~/aronsx/.myvimrc ~ && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && mkdir -p ~/.vim/bundle1/code_complete/plugin/ && cp ~/aronsx/ ~/.vim/bundle/code_complete/plugin/ && vim +PluginInstall +qall
