@@ -283,7 +283,7 @@ let g:template['c']['switch'] = "switch (".g:rs."...".g:re.")\<cr>{\<cr>case ".g
             \g:rs."...".g:re." :\<cr>break;\<cr>default :\<cr>break;\<cr>}"
 let g:template['c']['if'] = "if(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
 let g:template['c']['while'] = "while(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
-let g:template['c']['ife'] = "if(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>} else\<cr>{\<cr>".g:rs."...".
+ let g:template['c']['ife'] = "if(".g:rs."...".g:re.")\<cr>{\<cr>".g:rs."...".g:re."\<cr>}\<cr>else\<cr>{\<cr>".g:rs."...".
             \g:re."\<cr>}"
 let g:template['c']['write'] = "write(1, ".g:rs."...".g:re.", 1);"
 let g:template['c']['printf'] = "printf(\"\%".g:rs."...".g:re."\\n\", ".g:rs."...".g:re.");"
