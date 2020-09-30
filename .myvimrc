@@ -105,4 +105,5 @@ Plugin 'davidhalter/jedi-vim' " плагин автодополнения
 Plugin 'tpope/vim-surround' " плагин добавления скобок
 Plugin 'mbbill/code_complete' " автокомплит с
 Plugin 'morhetz/gruvbox'
+let g:auto_save = 1
 colorscheme gruvbox
