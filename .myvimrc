@@ -1,5 +1,6 @@
 set number
 map <F7> :!clear && norminette -R CheckForbiddenSourceHeader *.c && gcc -Wall -Wextra -Werror *.c && ./a.out && rm a.out<CR>
+map <F6> :!git add % && git commit -m '% ' && git push<left><left><left><left><left><left><left><left><left><left><left><left><left>
 map Ж :
 map Ф A
 map И B
