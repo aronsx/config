@@ -103,3 +103,5 @@ filetype plugin indent on    " required
 Plugin 'davidhalter/jedi-vim' " плагин автодополнения
 Plugin 'tpope/vim-surround' " плагин добавления скобок
 Plugin 'mbbill/code_complete' " автокомплит с
+Plugin 'morhetz/gruvbox'
+colorscheme gruvbox
