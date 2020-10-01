@@ -3,6 +3,7 @@ map <F8> :!clear && norminette -R CheckForbiddenSourceHeader %<CR> " эта шт
 map <F7> :!clear && gcc -Wall -Wextra -Werror *.c && ./a.out %<CR> " эта штука компилит все файлы .с в папке и запускает 
 map <F6> gg10zfj " эта штука просто скрывает заголовок
 map <F5> :!git add % && git commit -m '% '<left> " эта штука добавляет текущий файл в комит и комитит его (курсор будет в ковычках для ввода коммента)
+map <F2> <C-w>w
 map Ж :
 map Ф A
 map И B
