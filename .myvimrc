@@ -110,3 +110,4 @@ Plugin 'mbbill/code_complete' " автокомплит с
 Plugin 'morhetz/gruvbox' " феноменальная и приятная песочная тема
 let g:auto_save = 1 " включение автосохранения
 colorscheme gruvbox " включение темы (обязательно после добавления плагина)
+set mouse=nrv
