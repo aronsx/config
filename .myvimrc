@@ -111,3 +111,4 @@ Plugin 'morhetz/gruvbox' " феноменальная и приятная пес
 let g:auto_save = 1 " включение автосохранения
 colorscheme gruvbox " включение темы (обязательно после добавления плагина)
 set mouse=nrv
+utocmd FileType * set foldmethod=expr | set foldexpr=getline(v:lnum)=~'\/\*............................................................................\*\/' " свернуть шапку
