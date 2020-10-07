@@ -1,9 +1,10 @@
 set number
 map <F8> :!clear && norminette -R CheckForbiddenSourceHeader %<CR>
-map <F7> :!clear && gcc -Wall -Wextra -Werror *.c && ./a.out %<CR>
+map <F7> :!clear && gcc -Wall -Wextra -Werror % && ./a.out %<CR>
 map <F6> gg10zfj
 map <F5> :!git add % && git commit -m '% '<left>
-map <F2> <C-w>w
+map <F3> :NERDTreeToggle<CR>
+map <Tab> <C-w>
 map Ж :
 map Ф A
 map И B
@@ -104,11 +105,14 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this linek
-Plugin 'davidhalter/jedi-vim' " плагин автодополнения
 Plugin 'tpope/vim-surround' " плагин добавления скобок
 Plugin 'mbbill/code_complete' " автокомплит с
 Plugin 'morhetz/gruvbox' " феноменальная и приятная песочная тема
+Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
 let g:auto_save = 1 " включение автосохранения
+let g:airline_theme='gruvbox'
 colorscheme gruvbox " включение темы (обязательно после добавления плагина)
 set mouse=nrv
-utocmd FileType * set foldmethod=expr | set foldexpr=getline(v:lnum)=~'\/\*............................................................................\*\/' " свернуть шапку
+set bg=dark
+autocmd FileType * set foldmethod=expr | set foldexpr=getline(v:lnum)=~'\/\*............................................................................\*\/'
