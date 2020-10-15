@@ -265,10 +265,18 @@ autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
 " --- Russian key ---
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 " размер цветного ограничителя 
-set colorcolumn=120
+set colorcolumn=80
 
 " убрать цифры в vim
 set nonumber
 
 " открытие командной строки : на русской раскладке
 map Ж :
+
+Plugin 'morhetz/gruvbox'
+map <F5> :!git add % && git commit -m '% '<left>
+map <Tab> <C-w>
+let g:airline_theme='gruvbox'
+colorscheme gruvbox
+set bg=dark
+set mouse=a
