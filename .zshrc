@@ -8,7 +8,8 @@ export ZSH="/home/aronsx/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="af-magic"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +69,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages tmux node lenv vim-interaction zsh-autosuggestions)
+plugins=(git colored-man-pages tmux node web-search python django vi-mode virtualenv vim-interaction zsh-autosuggestions)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -98,3 +99,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+set -o vi                
+alias vimv='vim -O'      
+alias vims='vim -o'      
+alias tre='trans en:ru'  
+alias trr='trans ru:en'  
+. /usr/share/z/z.sh      
