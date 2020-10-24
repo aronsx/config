@@ -274,6 +274,7 @@ set nonumber
 map Ж :
 
 Plugin 'morhetz/gruvbox'
+Plugin 'ervandew/supertab'
 map <F5> :!git add % && git commit -m '% '<left>
 map <Tab> <C-w>
 let g:airline_theme='gruvbox'
