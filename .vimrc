@@ -281,3 +281,5 @@ let g:airline_theme='gruvbox'
 colorscheme gruvbox
 set bg=dark
 set mouse=a
+map <C-S-l> :!autopep8 -i %<CR>             
+let NERDTreeIgnore=['__pycache__', '\.pyc$']
