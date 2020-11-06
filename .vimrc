@@ -35,7 +35,7 @@ Plugin 'honza/vim-snippets'		" snippets repo
 " --- Python ---
 Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
-Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
+Plugin 'lepture/vim-jinja.git' 		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 
 "---------------=== Emmet ===-------------
@@ -57,6 +57,7 @@ aunmenu Help.
 aunmenu Window.
 let no_buffers_menu=1
 set mousemodel=popup
+set mouse=a
 
 set ruler
 set completeopt-=preview
@@ -153,7 +154,7 @@ map <F2> :TaskList<CR> 	   " отобразить список тасков на
 map <C-q> :bd<CR> 	   " CTRL+Q - закрыть текущий буффер
 
 " Копирование выделения в буфер обмена
-map <F9> :'<,'>w !xclip -selection clipboard<CR>
+map <F9> :'<,'>w !xclip<CR><CR>
 
 "=====================================================
 " Python-mode settings
@@ -206,10 +207,9 @@ nnoremap <F5> :ConqueTermSplit ipython<CR>
 " а debug-mode на <F6>
 nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
 " передача текущего файла в пайтон
-nnoremap <F7> :!clear && python3 %<CR>
-" компиляция и запуск файла С
-nnoremap <S-F7> :!clear && gcc -Wall %&& ./a.out<CR>
 nnoremap <F7> :!python3 %<CR>
+" компиляция и запуск файла С
+nnoremap <S-F7> :!gcc -Wall %&& ./a.out<CR>
 " прогон открытого файла через autopep8 и запись
 nnoremap <F8> :!autopep8 -i %<CR>
 let g:ConqueTerm_StartMessages = 0
@@ -267,19 +267,23 @@ set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNO
 " размер цветного ограничителя 
 set colorcolumn=80
 
-" убрать цифры в vim
-set nonumber
 
 " открытие командной строки : на русской раскладке
 map Ж :
 
 Plugin 'morhetz/gruvbox'
 Plugin 'ervandew/supertab'
+Plugin 'pbondoer/vim-42header'
+Plugin 'preservim/nerdcommenter'
+
+colorscheme gruvbox
+
+let g:airline_theme='gruvbox'
+let NERDTreeIgnore=['__pycache__', '\.pyc$']
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+
 map <F5> :!git add % && git commit -m '% '<left>
 map <Tab> <C-w>
-let g:airline_theme='gruvbox'
-colorscheme gruvbox
+
 set bg=dark
-set mouse=a
-map <C-S-l> :!autopep8 -i %<CR>             
-let NERDTreeIgnore=['__pycache__', '\.pyc$']
+set nu
