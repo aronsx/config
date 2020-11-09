@@ -7,6 +7,8 @@
 " let g:template['newft']['anotherkeyword'] = "another abbrevation"
 " ...
 "
+let g:template['c']['in'] = "#include \"\"\<left>"
+let g:template['c']['is'] = "#include <>\<left>"
 let g:template['c']['for'] = "for (".g:rs."...".g:re." ; ".g:rs."...".g:re." ; ".g:rs."...".g:re.")\<cr>{\<cr>".
             \g:rs."...".g:re."\<cr>}\<cr>"
 let g:template['c']['main2'] = "int\tmain(int argc, char \*argv\[\])\<cr>{\<cr>".g:rs."...".g:re."\<cr>\<bs>return (0);\<cr>}"
