@@ -70,7 +70,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages tmux node web-search python django vi-mode virtualenv vim-interaction zsh-autosuggestions)
+plugins=(git colored-man-pages tmux node web-search python django virtualenv vim-interaction zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,9 +99,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-set -o vi
+#set -o vi
 alias vimv='vim -O'
 alias vims='vim -o'
-alias tre='trans en:ru'
-alias trr='trans ru:en'
+alias tre='trans en:ru -b'
+alias trr='trans ru:en -b'
 . /usr/share/z/z.sh
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a3a3a"

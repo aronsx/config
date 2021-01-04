@@ -33,7 +33,7 @@ Plugin 'honza/vim-snippets'		" snippets repo
 
 "---------------=== Languages support ===-------------
 " --- Python ---
-Plugin 'klen/python-mode'	        " Python mode (docs, refactor, lints, highlighting, run and ipdb and more)
+Plugin 'klen/python-mode'	        " Plf. = )lf. = )lf. = )lf. = )lf. = )lf. = )ython mode (docs, refactor, lints, highlighting, run and ipdb and more)
 Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'lepture/vim-jinja.git' 		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
@@ -112,7 +112,7 @@ set noswapfile 	     " no swap files
 
 " прячем панельки
 "set guioptions-=m   " меню
-set guioptions-=T    " тулбар
+"set guioptions-=T    " тулбар
 "set guioptions-=r   "  скроллбары
 
 " настройка на Tab
@@ -173,7 +173,7 @@ let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_ignore="E501,W601,C0110"
 " провека кода после сохранения
-let g:pymode_lint_write = 1
+let g:pymode_lint_write = 0
 
 " поддержка virtualenv
 let g:pymode_virtualenv = 1
@@ -209,7 +209,7 @@ nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
 " передача текущего файла в пайтон
 nnoremap <F7> :!python3 %<CR>
 " компиляция и запуск файла С
-nnoremap <S-F7> :!gcc -Wall %&& ./a.out<CR>
+nnoremap <S-F7> :!gcc -Wall -Wextra -Werror % && ./a.out<CR>
 " прогон открытого файла через autopep8 и запись
 nnoremap <F8> :!autopep8 -i %<CR>
 let g:ConqueTerm_StartMessages = 0
@@ -275,6 +275,7 @@ Plugin 'morhetz/gruvbox'
 Plugin 'ervandew/supertab'
 Plugin 'pbondoer/vim-42header'
 Plugin 'preservim/nerdcommenter'
+"Plugin 'mbbill/code_complete'
 
 colorscheme gruvbox
 
@@ -283,7 +284,42 @@ let NERDTreeIgnore=['__pycache__', '\.pyc$']
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
 map <F5> :!git add % && git commit -m '% '<left>
-map <Tab> <C-w>
+nnoremap <Tab> <C-w>
 
 set bg=dark
 set nu
+set cursorline
+"autocmd VimEnter * NERDTree 
+
+" 21 school
+autocmd FileType *.c set foldmethod=expr | set foldexpr=getline(v:lnum)=~'\/\*............................................................................\*\/'
+nnoremap <S-F8> :!norminette -R CheckForbiddenSourceHeader %<CR>
+
+""" 21 norme
+"Plugin 'vim-syntastic/syntastic'
+"Plugin 'alexandregv/norminette-vim'
+ " Enable norminette-vim (and gcc)
+"let g:syntastic_c_checkers = ['norminette', 'gcc']
+"let g:syntastic_aggregate_errors = 1
+
+ " Set the path to norminette (do no set if using norminette of 42 mac)
+"let g:syntastic_c_norminette_exec = '~/.norminette/norminette.rb'
+
+ " Support headers (.h)
+"let g:c_syntax_for_h = 1
+"let g:syntastic_c_include_dirs = ['include', '../include', '../../include', 'libft', '../libft/include', '../../libft/include']
+
+ " Pass custom arguments to norminette (this one ignores 42header)
+"let g:syntastic_c_norminette_args = '-R CheckTopCommentHeader'
+
+ " Check errors when opening a file (disable to speed up startup time)
+"let g:syntastic_check_on_open = 1
+
+ " Enable error list
+"let g:syntastic_always_populate_loc_list = 1
+
+ " Automatically open error list
+"let g:syntastic_auto_loc_list = 1
+
+ " Skip check when closing
+"let g:syntastic_check_on_wq = 0
