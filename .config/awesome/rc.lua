@@ -47,11 +47,11 @@ beautiful.bg_normal         = "#222D32"
 beautiful.bg_focus          = "#2C3940"
 beautiful.titlebar_close_button_normal = "/usr/share/awesome/themes/cesious/titlebar/close_normal_adapta.png"
 beautiful.titlebar_close_button_focus = "/usr/share/awesome/themes/cesious/titlebar/close_focus_adapta.png"
-beautiful.font              = "Noto Sans Regular 12"
+beautiful.font              = "Noto Sans Regular 10"
 beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
-browser = "exo-open --launch WebBrowser" or "google-chrome-stable"
+browser = "google-chrome-stable" or "exo-open --launch WebBrowser"
 filemanager =  "nemo" or "exo-open --launch FileManager"
 gui_editor = "gvim"
 terminal = os.getenv("TERMINAL") or "gnome-terminal"
@@ -64,22 +64,23 @@ terminal = os.getenv("TERMINAL") or "gnome-terminal"
 modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    -- awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    --awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
+    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    awful.layout.suit.floating,
 }
 -- }}}
 
@@ -181,10 +182,10 @@ local tasklist_buttons = gears.table.join(
                                               end
                                           end),
                      -- awful.button({ }, 3, client_menu_toggle_fn()),
-                     awful.button({ }, 2, function (c)
+                     awful.button({ }, 2, client_menu_toggle_fn()),
+                     awful.button({ }, 3, function (c)
     										  c:kill()
 										  end ),
-                     awful.button({ }, 3, client_menu_toggle_fn()),
                      awful.button({ }, 4, function ()
                                               awful.client.focus.byidx(1)
                                           end),
@@ -319,10 +320,10 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(fileman) end,
               {description = "open a file manager", group = "launcher"}),
-    awful.key({ modkey,           }, "b", function () awful.spawn("surf duckduckgo.com") end,
-              {description = "open a surf browser", group = "launcher"}),
-    awful.key({ modkey,           }, "c", function () awful.spawn(browser) end,
-              {description = "open a surf browser", group = "launcher"}),
+    awful.key({ modkey,           }, "c", function () awful.spawn("surf duckduckgo.com") end,
+	      {description = "open a surf browser", group = "launcher"}),
+    --awful.key({ modkey,           }, "c", function () awful.spawn(browser) end,
+              --{description = "open a default browser", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
