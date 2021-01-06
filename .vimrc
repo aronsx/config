@@ -1,179 +1,55 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" =============================================================================
+" VIM PLUG
+" =============================================================================
+" sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+call plug#begin('~/.config/nvim/autoload/plugged')
 
-"=====================================================
-" Vundle settings
-"=====================================================
-" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" для установки Vundle.vim
-" 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Any valid git URL is allowed
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
-Plugin 'gmarik/Vundle.vim'		" let Vundle manage Vundle, required
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-"---------=== Code/project navigation ===-------------
-Plugin 'scrooloose/nerdtree' 	    	" Project and file navigation
-Plugin 'majutsushi/tagbar'          	" Class/module browser
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-"------------------=== Other ===----------------------
-Plugin 'vim-airline/vim-airline'   	" Lean & mean status/tabline for vim
-Plugin 'vim-airline/vim-airline-themes' " vim airline themes
-Plugin 'fisadev/FixedTaskList.vim'  	" Pending tasks list
-Plugin 'rosenfeld/conque-term'      	" Consoles as buffers
-Plugin 'tpope/vim-surround'	   	" Parentheses, brackets, quotes, XML tags, and more
-Plugin 'machakann/vim-sandwich'	   	" is a set of operator and textobject plugins to add/delete/replace surroundings of a sandwiched textobject, like (foo), 'bar'.
+Plug 'morhetz/gruvbox'                  " красивая тема
+Plug 'ervandew/supertab'                " табуляция 
+"Plug 'pbondoer/vim-42header'
+Plug 'preservim/nerdcommenter'          " комментирование 
+Plug 'majutsushi/tagbar'          	" Class/module browser
+Plug 'klen/python-mode'                 " питонячий модуль
+"Plug 'vim-airline/vim-airline'   	" Lean & mean status/tabline for vim
+"Plug 'vim-airline/vim-airline-themes'   " vim airline themes
+Plug 'majutsushi/tagbar'          	" Class/module browser
+Plug 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
+Plug 'tmhedberg/SimpylFold'             " Умное определение вкладок по отступам
+Plug 'Valloric/YouCompleteMe'           " автодополнение, нужно компилить модули
+Plug 'epheien/termdbg'			" дебагер
+Plug 'jistr/vim-nerdtree-tabs'
+"Plug 'Lokaltog/powerline'
 
-"--------------=== Snippets support ===---------------
-Plugin 'garbas/vim-snipmate'		" Snippets manager
-Plugin 'MarcWeber/vim-addon-mw-utils'	" dependencies #1
-Plugin 'tomtom/tlib_vim'		" dependencies #2
-Plugin 'honza/vim-snippets'		" snippets repo
+" Initialize plugin system
+call plug#end()
 
-"---------------=== Languages support ===-------------
-" --- Python ---
-Plugin 'klen/python-mode'	        " Plf. = )lf. = )lf. = )lf. = )lf. = )lf. = )ython mode (docs, refactor, lints, highlighting, run and ipdb and more)
-Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
-Plugin 'lepture/vim-jinja.git' 		" Jinja support for vim
-Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
-
-"---------------=== Emmet ===-------------
-Plugin 'mattn/emmet-vim'		" Emmet for html
-
-"---------------=== for html ===-------------
- Plugin 'vim-scripts/closetag.vim'	" closetag
-
-call vundle#end()            		" required
-filetype on
-filetype plugin on
-filetype plugin indent on
-
-"=====================================================
-" General settings
-"=====================================================
-set backspace=indent,eol,start
-aunmenu Help.
-aunmenu Window.
-let no_buffers_menu=1
-set mousemodel=popup
-set mouse=a
-
-set ruler
-set completeopt-=preview
-set gcr=a:blinkon0
-if has("gui_running")
-  set cursorline
-endif
-set ttyfast
-
-" включить подсветку кода
-syntax on
-if has("gui_running")
-" GUI? устаналиваем тему и размер окна
-  set lines=50 columns=125
-  colorscheme molokai
-" раскомментируйте эти строки, если хотите, чтобы NERDTree/TagBar автоматически отображались при запуске vim
-" autocmd vimenter * TagbarToggle
-" autocmd vimenter * NERDTree
-" autocmd vimenter * if !argc() | NERDTree | endif
-
-" на маке vim?
-if has("mac")
-  set guifont=Consolas:h13
-  set fuoptions=maxvert,maxhorz
-else
-" дефолтный GUI
-  set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 10
-endif
-else
-" терминал?
-  colorscheme desert
-endif
-
-tab sball
-set switchbuf=useopen
-
-" отключаем пищалку и мигание
-set visualbell t_vb=
-set novisualbell
-
-set enc=utf-8	     " utf-8 по дефолту в файлах
-set ls=2             " всегда показываем статусбар
-set incsearch	     " инкреминтируемый поиск
-set hlsearch	     " подсветка результатов поиска
-set nu	             " показывать номера строк
-set scrolloff=5	     " 5 строк при скролле за раз
-
-" отключаем бэкапы и своп-файлы
-set nobackup 	     " no backup files
-set nowritebackup    " only in case you don't want a backup file while editing
-set noswapfile 	     " no swap files
-
-" прячем панельки
-"set guioptions-=m   " меню
-"set guioptions-=T    " тулбар
-"set guioptions-=r   "  скроллбары
-
-" настройка на Tab
-set smarttab
-set tabstop=8
-
-"  при переходе за границу в 120 символов в Ruby/Python/js/C/C++ подсвечиваем на темном фоне текст
-augroup vimrc_autocmds
-    autocmd!
-    autocmd FileType ruby,python,javascript,c,cpp highlight Excess ctermbg=DarkGrey guibg=Black
-    autocmd FileType ruby,python,javascript,c,cpp match Excess /\%120v.*/
-    autocmd FileType ruby,python,javascript,c,cpp set nowrap
-augroup END
-
-" указываем каталог с настройками SnipMate
-let g:snippets_dir = "~/.vim/vim-snippets/snippets"
-
-" настройки Vim-Airline
-set laststatus=2
-let g:airline_theme='biogoo'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-" TagBar настройки
-map <F4> :TagbarToggle<CR>
-let g:tagbar_autofocus = 0 " автофокус на Tagbar при открытии
-
-" NerdTree настройки
-" показать NERDTree на F3
-map <F3> :NERDTreeToggle<CR>
-"игноррируемые файлы с расширениями
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-
-" TaskList настройки
-map <F2> :TaskList<CR> 	   " отобразить список тасков на F2
-
-" Работа буфферами
-map <C-q> :bd<CR> 	   " CTRL+Q - закрыть текущий буффер
-
-" Копирование выделения в буфер обмена
-map <F9> :'<,'>w !xclip<CR><CR>
 
 "=====================================================
 " Python-mode settings
 "=====================================================
 " отключаем автокомплит по коду (у нас вместо него используется jedi-vim)
 " прогон открытого файла через autopep8 и запись
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
+"let g:pymode_rope = 0
+"let g:pymode_rope_completion = 0
+"let g:pymode_rope_complete_on_dot = 0
 
 " документация
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
+"let g:pymode_doc = 0
+"let g:pymode_doc_key = 'K'
 " проверка кода
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_ignore="E501,W601,C0110"
 " провека кода после сохранения
-let g:pymode_lint_write = 0
+"let g:pymode_lint_write = 0
 
 " поддержка virtualenv
 let g:pymode_virtualenv = 1
@@ -183,23 +59,33 @@ let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_key = '<leader>b'
 
 " подстветка синтаксиса
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"let g:pymode_syntax = 1
+"let g:pymode_syntax_all = 1
+"let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"let g:pymode_syntax_space_errors = g:pymode_syntax_all
 
 " отключить autofold по коду
-let g:pymode_folding = 0
+"let g:pymode_folding = 0
 
 " возможность запускать код
-let g:pymode_run = 0
+"let g:pymode_run = 0
 
 " Disable choose first function/method at autocomplete
-let g:jedi#popup_select_first = 0
+"let g:jedi#popup_select_first = 0
 
 "=====================================================
 " User hotkeys
 "=====================================================
+" FZF on f2
+map <F2> :FZF<CR>
+
+" показать NERDTree на F3
+map <F3> :NERDTreeToggle<CR>
+"игноррируемые файлы с расширениями
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
+" TagBar настройки
+map <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 0 " автофокус на Tagbar при открытии
 " ConqueTerm
 " запуск интерпретатора на F5
 " nnoremap <F5> :ConqueTermSplit ipython<CR>
@@ -218,108 +104,131 @@ let g:ConqueTerm_CloseOnEnd = 0
 autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
 " автокомплит через <Ctrl+Space>
-inoremap <C-space> <C-x><C-o>
+"inoremap <C-space> <C-x><C-o>
 
-" переключение между синтаксисами
-nnoremap <leader>Th :set ft=htmljinja<CR>
-nnoremap <leader>Tp :set ft=python<CR>
-nnoremap <leader>Tj :set ft=javascript<CR>
-nnoremap <leader>Tc :set ft=css<CR>
-nnoremap <leader>Td :set ft=django<CR>
+" mapping for ctrl-w window leader
+nnoremap <Tab> <C-w>
+
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-Q> <C-W><C-Q>
+
+"tabs navigations
+nnoremap <space>1 1gt
+nnoremap <space>2 2gt
+nnoremap <space>3 3gt
+nnoremap <space>4 4gt
+nnoremap <space>5 5gt
+nnoremap <space>6 6gt
+nnoremap <space>7 7gt
+nnoremap <space>8 8gt 
+nnoremap <space>9 9gt
+nnoremap <space>0 0gt
+
+
+" folding on space
+nnoremap <space><space> za
+
+map <C-kDivide> :call NERDComment("x", "Invert")<CR>
+
+" leader on space
+let mapleader =" "
 
 "=====================================================
-" Languages support
+" User settings
 "=====================================================
-" --- Python ---
-"autocmd FileType python set completeopt-=preview " раскомментируйте, в случае, если не надо, чтобы jedi-vim показывал документацию по методу/классу
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions+=croq softtabstop=4 smartindent
-\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
 
-" --- JavaScript ---
-let javascript_enable_domhtmlcss=1
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd BufNewFile,BufRead *.json setlocal ft=javascript
+" отключаем пищалку и мигание
+set visualbell t_vb=
+set novisualbell
 
-" --- HTML ---
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+set enc=utf-8	     " utf-8 по дефолту в файлах
+set ls=2             " всегда показываем статусбар
+set incsearch	     " инкреминтируемый поиск
+set hlsearch	     " подсветка результатов поиска
+set nu	             " показывать номера строк
+set scrolloff=5	     " 5 строк при скролле за раз
 
-" --- template language support (SGML / XML too) ---
-autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-autocmd bufnewfile,bufread *.rhtml setlocal ft=eruby
-autocmd BufNewFile,BufRead *.mako setlocal ft=mako
-autocmd BufNewFile,BufRead *.tmpl setlocal ft=htmljinja
-autocmd BufNewFile,BufRead *.py_tmpl setlocal ft=python
-let html_no_rendering=1
-let g:closetag_default_xml=1
-let g:sparkupNextMapping='<c-l>'
-autocmd FileType html,htmldjango,htmljinja,eruby,mako let b:closetag_html_style=1
-" autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/scripts/closetag.vim
-autocmd FileType html,xhtml,xml,htmldjango,htmljinja,eruby,mako source ~/.vim/bundle/closetag.vim/plugin/closetag.vim
+" отключаем бэкапы и своп-файлы
+set nobackup 	     " no backup files
+set nowritebackup    " only in case you don't want a backup file while editing
+set noswapfile 	     " no swap files
 
-" --- CSS ---
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType css setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
+" настройки Vim-Airline
+set laststatus=2
+let g:airline_theme='biogoo'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " --- Russian key ---
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-" размер цветного ограничителя 
+
+" columnborder
 set colorcolumn=80
 
 
-" открытие командной строки : на русской раскладке
+" open : on rus langmap
 map Ж :
 
-Plugin 'morhetz/gruvbox'
-Plugin 'ervandew/supertab'
-Plugin 'pbondoer/vim-42header'
-Plugin 'preservim/nerdcommenter'
-"Plugin 'mbbill/code_complete'
 
+" color theme
 colorscheme gruvbox
-
 let g:airline_theme='gruvbox'
-let NERDTreeIgnore=['__pycache__', '\.pyc$']
+set bg=dark
+
+"игноррируемые файлы с расширениями
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$', '__pycache__', '\.pyc$']
+" nerdtree ignored files
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
-map <F5> :!git add % && git commit -m '% '<left>
-nnoremap <Tab> <C-w>
+" mapping for commit
+"map <F5> :!git add % && git commit -m '% '<left>
 
-set bg=dark
-set nu
+
+" numbers and visual
+set number
 set cursorline
-"autocmd VimEnter * NERDTree 
+set mouse=a
+syntax on
 
-" 21 school
-autocmd FileType *.c set foldmethod=expr | set foldexpr=getline(v:lnum)=~'\/\*............................................................................\*\/'
-nnoremap <S-F8> :!norminette -R CheckForbiddenSourceHeader %<CR>
+" for nerdcommenter
+filetype on
+filetype plugin on
+filetype plugin indent on
 
-""" 21 norme
-"Plugin 'vim-syntastic/syntastic'
-"Plugin 'alexandregv/norminette-vim'
- " Enable norminette-vim (and gcc)
-"let g:syntastic_c_checkers = ['norminette', 'gcc']
-"let g:syntastic_aggregate_errors = 1
+" supertab 
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
- " Set the path to norminette (do no set if using norminette of 42 mac)
-"let g:syntastic_c_norminette_exec = '~/.norminette/norminette.rb'
 
- " Support headers (.h)
-"let g:c_syntax_for_h = 1
-"let g:syntastic_c_include_dirs = ['include', '../include', '../../include', 'libft', '../libft/include', '../../libft/include']
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
 
- " Pass custom arguments to norminette (this one ignores 42header)
-"let g:syntastic_c_norminette_args = '-R CheckTopCommentHeader'
+" system clipboard
+set clipboard=unnamed
 
- " Check errors when opening a file (disable to speed up startup time)
-"let g:syntastic_check_on_open = 1
+" табуляция в фронт файлах 2 пробела
+"au BufNewFile,BufRead *.js, *.html, *.css
+    "\ set tabstop=2
+    "\ set softtabstop=2
+    "\ set shiftwidth=2
 
- " Enable error list
-"let g:syntastic_always_populate_loc_list = 1
+ "обнаружение лишних пролелов
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
- " Automatically open error list
-"let g:syntastic_auto_loc_list = 1
+" закрытие автопревью питона после автодополнения
+let g:ycm_autoclose_preview_window_after_completion=1
 
- " Skip check when closing
-"let g:syntastic_check_on_wq = 0
+"python with virtualenv support
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+  "project_base_dir = os.environ['VIRTUAL_ENV']
+  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  "execfile(activate_this, dict(__file__=activate_this))
+"EOF
