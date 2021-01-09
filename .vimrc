@@ -18,8 +18,8 @@ Plug 'ervandew/supertab'                " табуляция
 Plug 'preservim/nerdcommenter'          " комментирование 
 Plug 'majutsushi/tagbar'          	" Class/module browser
 Plug 'klen/python-mode'                 " питонячий модуль
-"Plug 'vim-airline/vim-airline'   	" Lean & mean status/tabline for vim
-"Plug 'vim-airline/vim-airline-themes'   " vim airline themes
+Plug 'vim-airline/vim-airline'   	" Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline-themes'   " vim airline themes
 Plug 'majutsushi/tagbar'          	" Class/module browser
 Plug 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plug 'tmhedberg/SimpylFold'             " Умное определение вкладок по отступам
@@ -132,7 +132,8 @@ nnoremap <space>0 0gt
 " folding on space
 nnoremap <space><space> za
 
-map <C-kDivide> :call NERDComment("x", "Invert")<CR>
+"commenter on ctrl / don't work
+"map <C-kDivide> :call NERDComment("x", "Invert")<CR>
 
 " leader on space
 let mapleader =" "
@@ -211,24 +212,16 @@ set foldlevel=99
 " system clipboard
 set clipboard=unnamed
 
-" табуляция в фронт файлах 2 пробела
-"au BufNewFile,BufRead *.js, *.html, *.css
-    "\ set tabstop=2
-    "\ set softtabstop=2
-    "\ set shiftwidth=2
+" git on airline
+let g:airline#extensions#vimagit#enabled = 1
 
- "обнаружение лишних пролелов
-"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+" map uppercase wq
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
 
 " закрытие автопревью питона после автодополнения
 let g:ycm_autoclose_preview_window_after_completion=1
 
-"python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-  "project_base_dir = os.environ['VIRTUAL_ENV']
-  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  "execfile(activate_this, dict(__file__=activate_this))
-"EOF
+set tabstop=4

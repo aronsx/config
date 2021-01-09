@@ -213,7 +213,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1 desk", "2 terminal", "3 internet", "4 file man", "5 media", "6 chat" }, s, 
+    awful.tag({ "1 desk", "2 term", "3 web", "4 code", "5 media", "6 chat" , "7", "8", "9",}, s, 
       {awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[5]})
 
     -- Create a promptbox for each screen
@@ -320,10 +320,14 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(fileman) end,
               {description = "open a file manager", group = "launcher"}),
-    awful.key({ modkey,           }, "c", function () awful.spawn("surf duckduckgo.com") end,
+    awful.key({ modkey,           }, "c", function () awful.spawn("surf google.com") end,
 	      {description = "open a surf browser", group = "launcher"}),
     --awful.key({ modkey,           }, "c", function () awful.spawn(browser) end,
               --{description = "open a default browser", group = "launcher"}),
+    awful.key({"Shift", "Control" }, "Escape", function () awful.spawn("xkill") end,
+              {description = "xkill current app", group = "launcher"}),
+    awful.key({ "Control"         }, "Escape", function () awful.spawn("gnome-system-monitor") end,
+              {description = "gnome monitor", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -341,19 +345,19 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey     }, "b", function () awful.spawn(browser)          end,
+    awful.key({ modkey            }, "b", function () awful.spawn(browser)          end,
               {description = "launch Browser", group = "launcher"}),
-    awful.key({ modkey, "Control"}, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
+    awful.key({ modkey, "Control" }, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
               {description = "launch rofi", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(filemanager)            end,
               {description = "launch filemanager", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                       end,
               {description = "select previous", group = "layout"}),
-    awful.key({                   }, "Print", function () awful.spawn.with_shell("sleep 0.1 && /usr/bin/i3-scrot -d")   end,
+    awful.key({                   }, "Print", function () awful.spawn.with_shell("gnome-screenshot -i -c")   end,
               {description = "capture a screenshot", group = "screenshot"}),
-    awful.key({"Control"          }, "Print", function () awful.spawn.with_shell("sleep 0.1 && /usr/bin/i3-scrot -w")   end,
+    awful.key({"Control"          }, "Print", function () awful.spawn.with_shell("gnome-screenshot -w -c")   end,
               {description = "capture a screenshot of active window", group = "screenshot"}),
-    awful.key({"Shift"            }, "Print", function () awful.spawn.with_shell("sleep 0.1 && /usr/bin/i3-scrot -s")   end,
+    awful.key({"Shift"            }, "Print", function () awful.spawn.with_shell("gnome-screenshot -a -c")   end,
               {description = "capture a screenshot of selection", group = "screenshot"}),
 
     awful.key({ modkey, "Control" }, "n",
@@ -644,7 +648,7 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
         tiled[1].border_width = 0
         -- if layout ~= "max" and layout ~= "fullscreen" then
         -- XXX: SLOW!
-        -- awful.client.moveresize(0, 0, 2, 0, tiled[1])
+	 --awful.client.moveresize(0, 0, 2, 0, tiled[1])
         -- end
       else
         c.border_width = beautiful.border_width
@@ -663,6 +667,7 @@ end
 --        awful.titlebar.hide(c)
 --    end
 --end)
-
+os.execute ("setxkbmap -layout us,ru -variant -option grp:alt_shift_toggle,terminate:ctrl_alt_bksp &")
+os.execute("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 

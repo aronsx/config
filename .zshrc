@@ -70,7 +70,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages tmux node web-search python django virtualenv vim-interaction zsh-autosuggestions vi-mode vim-interaction zsh-interactive-cd zsh-navigation-tools vscode virtualenv autoenv)
+plugins=(zsh-interactive-cd git colored-man-pages tmux node web-search python django virtualenv zsh-autosuggestions vi-mode vim-interaction zsh-navigation-tools vscode virtualenv autoenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 #set -o vi
 alias vimv='vim -O'
 alias vims='vim -o'
+alias vimp='vim -p'
 alias tre='trans en:ru -b'
 alias trr='trans ru:en -b'
 . /usr/share/z/z.sh
