@@ -1,5 +1,8 @@
-unmap f
-let blacklists = ["https://lingualeo.com/*"]
-let blacklists = ["https://stepik.org/*"]
+let barposition = "bottom"
+let blacklists = ["https://www.hackerrank.com/*","http://localhost/*", "https://stepik.org/*","https://docs.google.com/*", "https://lingualeo.com/*"]
 let langmap="ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
 map Ж :
+
+site '*://*.youtube.com/*' {
+      unmap f
+}
