@@ -105,6 +105,7 @@ alias vims='vim -o'
 alias vimp='vim -p'
 alias tre='trans en:ru -b'
 alias trr='trans ru:en -b'
+alias ipython='ipython --TerminalInteractiveShell.editing_mode=vi'
 . /usr/share/z/z.sh
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
@@ -112,3 +113,4 @@ fi
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#3a3a3a"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
