@@ -35,14 +35,17 @@ conky.text = [[
 ${color white}SYSTEM ${hr 1}${color}
 
 Hostname: $alignr$nodename
-Kernel: $alignr$kernel
+#Kernel: $alignr$kernel
 Uptime: $alignr$uptime
-Temp: ${alignr}${exec sensors | grep "Core 0" | awk '{print $3}'}
-Fan: ${alignr}${exec sensors |grep Right |awk '{print $4, $5}'}
+Temp: ${alignr}${exec sensors | grep "temp1" | awk '{print $2}'}
+#Fan: ${alignr}${exec sensors |grep Right |awk '{print $4, $5}'}
 CPU: ${alignr}${freq} MHz
+#Gpu: ${alignr}${exec echo $(inxi -s|grep temp| cut -f14 -d ' ')°C}
+Gpu: ${alignr}${exec echo $(nvidia-smi| grep Default| cut -d'|' -f2)}
+Gpu memory: ${alignr}${exec echo $(nvidia-smi| grep Default| cut -d'|' -f3)}
 Processes: ${alignr}$processes ($running_processes running)
 Load: ${alignr}$loadavg
-Battery: ${battery_percent BAT0}% ${battery_bar BAT0}
+#Battery: ${battery_percent BAT0}% ${battery_bar BAT0}
 
 CPU1 ${alignr}${cpu cpu1}%
 ${cpubar 3 cpu1}
@@ -52,6 +55,14 @@ CPU3 ${alignr}${cpu cpu3}%
 ${cpubar 3 cpu3}
 CPU4 ${alignr}${cpu cpu4}%
 ${cpubar 3 cpu4}
+CPU5 ${alignr}${cpu cpu5}%
+${cpubar 3 cpu5}
+CPU6 ${alignr}${cpu cpu6}%
+${cpubar 3 cpu6}
+CPU7 ${alignr}${cpu cpu7}%
+${cpubar 3 cpu7}
+CPU8 ${alignr}${cpu cpu8}%
+${cpubar 3 cpu8}
 
 Ram ${alignr}$mem / $memmax ($memperc%)
 ${membar 3}
@@ -69,23 +80,25 @@ ${top_mem name 2}$alignr${top_mem cpu 2}${top_mem mem 2}
 ${top_mem name 3}$alignr${top_mem cpu 3}${top_mem mem 3}
 
 ${color white}Filesystem ${hr 1}${color}
-Root: ${alignr}${fs_free /} / ${fs_size /}
-${fs_bar 2 /}
+#Root: ${alignr}${fs_free /} / ${fs_size /}
+#${fs_bar 2 /}
 Home: ${alignr}${fs_free /home} / ${fs_size /home}
 ${fs_bar 2 /home}
-DEVEL: ${alignr}${fs_free /home/muammar/devel/} / ${fs_size /home/muammar/devel/}
-${fs_bar 2 /home/muammar/devel/}
+#DEVEL: ${alignr}${fs_free /home/muammar/devel/} / ${fs_size /home/muammar/devel/}
+#${fs_bar 2 /home/muammar/devel/}
 
 ${color white}WIRED CONNECTION${hr 1}${color}
-Down ${downspeed ens9}/s ${alignr}Up ${upspeed ens9}/s
-${downspeedgraph ens9 25,107} ${alignr}${upspeedgraph ens9 25,107}
-Total ${totaldown ens9} ${alignr}Total ${totalup ens9}
+Down ${downspeed enp10s0}/s ${alignr}Up ${upspeed enp10s0}/s
+${downspeedgraph enp10s0 25,107} ${alignr}${upspeedgraph enp10s0 25,107}
+Total ${totaldown enp10s0} ${alignr}Total ${totalup enp10s0}
 
-${color white}WIFI CONNECTION ${hr 1}${color}
-Down ${downspeed wlp3s0}/s ${alignr}Up ${upspeed wlp3s0}/s
-${downspeedgraph wlp3s0 25,107} ${alignr}${upspeedgraph wlp3s0 25,107}
-Total ${totaldown wlp3s0} ${alignr}Total ${totalup wlp3s0}
+#${color white}WIFI CONNECTION ${hr 1}${color}
+#Down ${downspeed wlp3s0}/s ${alignr}Up ${upspeed wlp3s0}/s
+#${downspeedgraph wlp3s0 25,107} ${alignr}${upspeedgraph wlp3s0 25,107}
+#Total ${totaldown wlp3s0} ${alignr}Total ${totalup wlp3s0}
 #${color white}WEATHER ${hr 1}${color}
 #
 #${execi 1800 /home/muammar/.conky/conky_simple/weather.sh SWXX0006}
+#${alignr}
+${exec cal}
 ]];

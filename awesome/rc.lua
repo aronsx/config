@@ -52,7 +52,7 @@ beautiful.notification_font = "Noto Sans Bold 14"
 
 -- This is used later as the default terminal and editor to run.
 browser = "google-chrome-stable" or "exo-open --launch WebBrowser"
-filemanager =  "nemo" or "exo-open --launch FileManager"
+filemanager =  "thunar" or "exo-open --launch FileManager"
 gui_editor = "gvim"
 terminal = os.getenv("TERMINAL") or "gnome-terminal"
 
@@ -75,11 +75,11 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    -- awful.layout.suit.magnifier,
     awful.layout.suit.floating,
 }
 -- }}}
@@ -213,8 +213,8 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1 desk", "2 term", "3 web", "4 code", "5 media", "6 chat" , "7", "8", "9",}, s, 
-      {awful.layout.layouts[2], awful.layout.layouts[1], awful.layout.layouts[4], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[5]})
+    awful.tag({ "1 desk", "2 term", "3 web", "4 chat", "5 media", "6 code" , "7 post", "8 task", "9 note",}, s, 
+      {awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[2]})
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -244,7 +244,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mytaglist,
             s.mypromptbox,
             separator,
-        },
+       },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
@@ -322,6 +322,10 @@ globalkeys = gears.table.join(
               {description = "open a file manager", group = "launcher"}),
     awful.key({ modkey,           }, "c", function () awful.spawn("surf google.com") end,
 	      {description = "open a surf browser", group = "launcher"}),
+    awful.key({ modkey,           }, "=", function () awful.spawn("redshift -O 5000") end,
+	      {description = "add redshift", group = "launcher"}),
+    awful.key({ modkey,           }, "-", function () awful.spawn("redshift -x") end,
+	      {description = "reset redshift", group = "launcher"}),
     --awful.key({ modkey,           }, "c", function () awful.spawn(browser) end,
               --{description = "open a default browser", group = "launcher"}),
     awful.key({"Shift", "Control" }, "Escape", function () awful.spawn("xkill") end,
@@ -345,7 +349,7 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)           end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey            }, "b", function () awful.spawn(browser)          end,
+    awful.key({ modkey            }, "b", function () awful.spawn(herebrowser)          end,
               {description = "launch Browser", group = "launcher"}),
     awful.key({ modkey, "Control" }, "Escape", function () awful.spawn("/usr/bin/rofi -show drun -modi drun") end,
               {description = "launch rofi", group = "launcher"}),
@@ -353,11 +357,11 @@ globalkeys = gears.table.join(
               {description = "launch filemanager", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                       end,
               {description = "select previous", group = "layout"}),
-    awful.key({                   }, "Print", function () awful.spawn.with_shell("gnome-screenshot -i -c")   end,
+    awful.key({                   }, "Print", function () awful.spawn.with_shell("xfce4-screenshooter")   end,
               {description = "capture a screenshot", group = "screenshot"}),
-    awful.key({"Control"          }, "Print", function () awful.spawn.with_shell("gnome-screenshot -w -c")   end,
+    awful.key({"Control"          }, "Print", function () awful.spawn.with_shell("xfce4-screenshooter -cw")   end,
               {description = "capture a screenshot of active window", group = "screenshot"}),
-    awful.key({"Shift"            }, "Print", function () awful.spawn.with_shell("gnome-screenshot -a -c")   end,
+    awful.key({"Shift"            }, "Print", function () awful.spawn.with_shell("xfce4-screenshooter -cr")   end,
               {description = "capture a screenshot of selection", group = "screenshot"}),
 
     awful.key({ modkey, "Control" }, "n",
@@ -546,6 +550,21 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+     { rule = { class = "GVIM" },
+       properties = { screen = 1, tag = "2 term" } },
+     { rule = { class = "Telegram" },
+       properties = { screen = 1, tag = "4 chat" } },
+     { rule = { class = "Skype" },
+       properties = { screen = 1, tag = "4 chat" } },
+     { rule = { class = "Slack" },
+       properties = { screen = 1, tag = "4 chat" , minimized = true} },
+     { rule = { class = "Thunderbird" },
+       properties = { screen = 1, tag = "7 post" } },
+     { rule = { class = "Ao" },
+       properties = { screen = 1, tag = "8 task" } },
+     { rule = { class = "KeePassXC" },
+       properties = { floating = true,
+                      screen = 1, tag = "9 note"} },
 
 
 }
@@ -667,7 +686,6 @@ end
 --        awful.titlebar.hide(c)
 --    end
 --end)
-os.execute ("setxkbmap -layout us,ru -variant -option grp:alt_shift_toggle,terminate:ctrl_alt_bksp &")
 os.execute("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 

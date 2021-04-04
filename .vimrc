@@ -4,8 +4,6 @@
 " sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 call plug#begin('~/.config/nvim/autoload/plugged')
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
@@ -14,20 +12,21 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'morhetz/gruvbox'                  " красивая тема
 Plug 'ervandew/supertab'                " табуляция 
-"Plug 'pbondoer/vim-42header'
 Plug 'preservim/nerdcommenter'          " комментирование 
-Plug 'majutsushi/tagbar'          	" Class/module browser
+Plug 'majutsushi/tagbar'          	    " Class/module browser
 Plug 'klen/python-mode'                 " питонячий модуль
-Plug 'vim-airline/vim-airline'   	" Lean & mean status/tabline for vim
+Plug 'vim-airline/vim-airline'   	    " Lean & mean status/tabline for vim
 Plug 'vim-airline/vim-airline-themes'   " vim airline themes
 Plug 'majutsushi/tagbar'          	" Class/module browser
-Plug 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
+Plug 'davidhalter/jedi-vim' 		    " Jedi-vim autocomplete plugin
 Plug 'tmhedberg/SimpylFold'             " Умное определение вкладок по отступам
-Plug 'Valloric/YouCompleteMe'           " автодополнение, нужно компилить модули
-Plug 'epheien/termdbg'			" дебагер
+"Plug 'Valloric/YouCompleteMe'           " автодополнение, нужно компилить модули
+Plug 'epheien/termdbg'			        " дебагер
 Plug 'jistr/vim-nerdtree-tabs'
-"Plug 'Lokaltog/powerline'
+Plug 'vim-utils/vim-man'                " vim Man pages
+Plug 'rosenfeld/conque-term'            " term in vim
 
+"Plug '42Paris/42header' 				" 42 header
 " Initialize plugin system
 call plug#end()
 
@@ -88,16 +87,16 @@ map <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 0 " автофокус на Tagbar при открытии
 " ConqueTerm
 " запуск интерпретатора на F5
-" nnoremap <F5> :ConqueTermSplit ipython<CR>
 nnoremap <F5> :ConqueTermSplit ipython<CR>
 " а debug-mode на <F6>
 nnoremap <F6> :exe "ConqueTermSplit ipython " . expand("%")<CR>
 " передача текущего файла в пайтон
 nnoremap <F7> :!python3 %<CR>
 " компиляция и запуск файла С
-nnoremap <S-F7> :!gcc -Wall -Wextra -Werror % && ./a.out<CR>
+" nnoremap <S-F7> :!gcc -Wall -Wextra -Werror % && ./a.out<CR>
+nnoremap <F8> :!gcc -Wall -Wextra -Werror % && ./a.out<CR>
 " прогон открытого файла через autopep8 и запись
-nnoremap <F8> :!autopep8 -i %<CR>
+" nnoremap <F8> :!autopep8 -i %<CR>
 let g:ConqueTerm_StartMessages = 0
 let g:ConqueTerm_CloseOnEnd = 0
 " проверка кода в соответствии с PEP8 через <leader>8
@@ -105,6 +104,10 @@ autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
 
 " автокомплит через <Ctrl+Space>
 "inoremap <C-space> <C-x><C-o>
+
+" autoopen NerdTree
+" autocmd vimenter * NERDTree
+" autocmd vimenter * if !argc() | NERDTree | endif
 
 " mapping for ctrl-w window leader
 nnoremap <Tab> <C-w>
@@ -127,7 +130,6 @@ nnoremap <space>7 7gt
 nnoremap <space>8 8gt 
 nnoremap <space>9 9gt
 nnoremap <space>0 0gt
-
 
 " folding on space
 nnoremap <space><space> za
@@ -224,4 +226,18 @@ let g:airline#extensions#vimagit#enabled = 1
 " закрытие автопревью питона после автодополнения
 let g:ycm_autoclose_preview_window_after_completion=1
 
+" tabulation settings
 set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set softtabstop=4
+
+" autotab
+set autoindent
+
+" turn off tabulation on paste
+" set paste
+
+" clear selections on esc
+"nnoremap <esc> :noh<cr>
