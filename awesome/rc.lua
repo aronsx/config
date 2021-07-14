@@ -42,6 +42,7 @@ end
 -- Themes define colours, icons, font and wallpapers.
 -- Chosen colors and buttons look alike adapta maia theme
 beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
+--beautiful.init("/home/user/.config/awesome/themes/zenburn/theme.lua")
 beautiful.icon_theme        = "Papirus-Dark"
 beautiful.bg_normal         = "#222D32"
 beautiful.bg_focus          = "#2C3940"
@@ -214,7 +215,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1 desk", "2 term", "3 web", "4 chat", "5 media", "6 code" , "7 post", "8 task", "9 note",}, s, 
-      {awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[2]})
+      {awful.layout.layouts[1], awful.layout.layouts[3], awful.layout.layouts[0], awful.layout.layouts[3], awful.layout.layouts[4], awful.layout.layouts[2]})
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -304,6 +305,8 @@ globalkeys = gears.table.join(
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
+    awful.key({ modkey,           }, "i", function () awful.screen.focus_relative( 1) end,
+              {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "Tab",
@@ -320,8 +323,12 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(fileman) end,
               {description = "open a file manager", group = "launcher"}),
-    awful.key({ modkey,           }, "c", function () awful.spawn("surf google.com") end,
-	      {description = "open a surf browser", group = "launcher"}),
+    awful.key({ modkey,           }, "c", function () awful.spawn("obsidian") end,
+	      {description = "open a obsidian", group = "launcher"}),
+    awful.key({ modkey,           }, "y", function () awful.spawn("translate_textbox") end,
+	      {description = "translate selected text", group = "launcher"}),
+    awful.key({ modkey,           }, "b", function () awful.spawn(browser) end,
+	      {description = "open a chrome browser", group = "launcher"}),
     awful.key({ modkey,           }, "=", function () awful.spawn("redshift -O 5000") end,
 	      {description = "add redshift", group = "launcher"}),
     awful.key({ modkey,           }, "-", function () awful.spawn("redshift -x") end,
@@ -565,6 +572,9 @@ awful.rules.rules = {
      { rule = { class = "KeePassXC" },
        properties = { floating = true,
                       screen = 1, tag = "9 note"} },
+     { rule = { class = "chrome" },
+       properties = { maximized = false,
+                      floating = false, tag = "3 web"} },
 
 
 }
@@ -686,6 +696,7 @@ end
 --        awful.titlebar.hide(c)
 --    end
 --end)
+awful.screen.set_auto_dpi_enabled( false )
 os.execute("/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &")
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
