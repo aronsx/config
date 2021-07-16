@@ -241,3 +241,6 @@ set autoindent
 
 " clear selections on esc
 "nnoremap <esc> :noh<cr>
+
+" show dockstring buttom
+set splitbelow
