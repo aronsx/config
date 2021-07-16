@@ -2,6 +2,7 @@
 SYNC = rsync -avzru
 
 all: vim awesome zsh cvim tmux ideavim 
+
 vim:
 	$(SYNC) ~/.vimrc .vimrc
 	$(SYNC) .vimrc ~/.vimrc
@@ -26,17 +27,20 @@ ideavim:	~/.ideavimrc
 	$(SYNC) ~/.ideavimrc .ideavimrc
 	$(SYNC) .ideavimrc ~/.ideavimrc
 
-update1:
+update: pull add commit push
+
+pull:
 	git pull origin master
 
-update2:
+add:
 	git add --all
 
-update3:
+commit: add
 	git commit -m "Automates sync: $(git status --porcelain)"
 
-update4:
+push:
 	git push --set-upstream origin master
+
 
 
 .PHONY: all vim awesome zsh cvim tmux ideavim
