@@ -65,6 +65,8 @@ map Б <
 map Ю >
 map Ё /|
 nnoremap <Tab> <C-w>
+inoremap kj <esc>
+inoremap jk <esc>
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -84,3 +86,5 @@ nnoremap <space>7 7gt
 nnoremap <space>8 8gt 
 nnoremap <space>9 9gt
 nnoremap <space>0 0gt
+
+set incsearch
