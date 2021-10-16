@@ -1,4 +1,4 @@
-"=====================================================
+"====================================================
 " plugins section
 "=====================================================
 call plug#begin('~/.vim/plugged')
@@ -74,6 +74,15 @@ nnoremap <space>9 9gt
 nnoremap <space>0 0gt
 nnoremap <space><space> za
 
+map <F1> :noh<CR>
+imap <F1> <esc>:noh<CR>
+map <F2> :FZF<CR>
+imap <F2> <esc>:FZF<CR>
+map <F3> :NERDTreeToggle<CR>
+imap <F3> <esc>:NERDTreeToggle<CR>
+map <F4> :TagbarToggle<CR>
+imap <F4> <esc>:TagbarToggle<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 map Ж :
@@ -328,5 +337,8 @@ map gw :Bclose<cr>
 set colorcolumn=79
 
 " run current script with python3 by CTRL+R in command and insert mode
-autocmd FileType python map <buffer> <C-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <C-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+"autocmd FileType python map <buffer> <C-r> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+"autocmd FileType python imap <buffer> <C-r> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+
+autocmd FileType python map <buffer> <F7> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F7> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
