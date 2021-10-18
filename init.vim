@@ -58,11 +58,6 @@ set foldlevel=99
 " key mappings
 "=====================================================
 nnoremap <tab> <c-w>
-nnoremap <c-j> <c-w><c-j>
-nnoremap <c-k> <c-w><c-k>
-nnoremap <c-l> <c-w><c-l>
-nnoremap <c-h> <c-w><c-h>
-nnoremap <c-q> <c-w><c-q>
 nnoremap <space>1 1gt
 nnoremap <space>2 2gt nnoremap <space>3 3gt
 nnoremap <space>4 4gt
