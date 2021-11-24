@@ -39,8 +39,8 @@ set autoindent
 set fileformat=unix
 filetype indent on      " load filetype-specific indent files
 
-inoremap kj <esc>
-inoremap jk <esc>
+"inoremap kj <esc>
+"inoremap jk <esc>
 
 colorscheme gruvbox
 
@@ -59,7 +59,8 @@ set foldlevel=99
 "=====================================================
 nnoremap <tab> <c-w>
 nnoremap <space>1 1gt
-nnoremap <space>2 2gt nnoremap <space>3 3gt
+nnoremap <space>2 2gt
+nnoremap <space>3 3gt
 nnoremap <space>4 4gt
 nnoremap <space>5 5gt
 nnoremap <space>6 6gt
@@ -238,7 +239,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer' }
+local servers = { 'pyright', 'gopls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -337,3 +338,5 @@ set colorcolumn=79
 
 autocmd FileType python map <buffer> <F7> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F7> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType go map <buffer> <F7> :w<CR>:exec '!go run' shellescape(@%, 1)<CR>
+autocmd FileType go imap <buffer> <F7> <esc>:w<CR>:exec '!go run' shellescape(@%, 1)<CR>
