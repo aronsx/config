@@ -1,4 +1,3 @@
-
 SYNC = rsync -avzru
 
 all: vim awesome zsh cvim tmux ideavim 
@@ -26,6 +25,10 @@ tmux:	~/.tmux.conf
 ideavim:	~/.ideavimrc
 	$(SYNC) ~/.ideavimrc .ideavimrc
 	$(SYNC) .ideavimrc ~/.ideavimrc
+
+nvim:	~/.config/nvim/init.vim
+	$(SYNC) ~/.config/nvim/init.vim init.vim
+	$(SYNC) init.vim ~/.config/nvim/init.vim
 
 update: pull add commit push
 
