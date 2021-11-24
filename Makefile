@@ -1,6 +1,6 @@
 SYNC = rsync -avzru
 
-all: vim awesome zsh cvim tmux ideavim 
+all: vim awesome zsh cvim tmux ideavim nvim
 
 vim:
 	$(SYNC) ~/.vimrc .vimrc
@@ -46,4 +46,4 @@ push:
 
 
 
-.PHONY: all vim awesome zsh cvim tmux ideavim
+.PHONY: all vim awesome zsh cvim tmux ideavim nvim
